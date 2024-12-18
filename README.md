@@ -263,10 +263,63 @@ body {
     slides[slideIndex-1].style.display="block";
     dots[slideIndex-1].className += " active";
   }
+   function openModal(imageSrc, imageAlt) {
+    let modal = document.getElementById('imageModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'imageModal';
+      modal.style.cssText = `
+        display: flex; 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background-color: rgba(0, 0, 0, 0.8); 
+        justify-content: center; 
+        align-items: center;
+        z-index: 1000;
+      `;
+  
+      const modalImg = document.createElement('img');
+      modalImg.id = 'modalImg';
+      modalImg.style.cssText = `
+        max-width: 90%; 
+        max-height: 90%; 
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+      `;
+  
+      const closeModal = document.createElement('span');
+      closeModal.innerHTML = '&times;';
+      closeModal.style.cssText = `
+        position: absolute; 
+        top: 20px; 
+        right: 30px; 
+        color: white; 
+        font-size: 40px; 
+        font-weight: bold; 
+        cursor: pointer;
+      `;
+      closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+  
+      modal.appendChild(modalImg);
+      modal.appendChild(closeModal);
+      document.body.appendChild(modal);
+    }
+  
+    const modalImg = document.getElementById('modalImg');
+    modalImg.src = imageSrc;
+    modalImg.alt = imageAlt;
+    modal.style.display = 'flex';
+  }
+
   ~~~
 # OUTPUT:
 ![alt text](<Screenshot 2024-12-14 190738.png>)
-![alt text](<Screenshot 2024-12-14 190756.png>)
+![alt text](<Screenshot 2024-12-18 101422.png>)
+
 ![alt text](<Screenshot 2024-12-14 190817.png>)
 ![alt text](<Screenshot 2024-12-14 190836.png>)
 # RESULT:
